@@ -25,6 +25,7 @@ void Pieces::draw()
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
     ofBackground(55);
     ofSetWindowShape(800, 800);
     ofSetFrameRate(60);
@@ -33,7 +34,8 @@ void ofApp::setup(){
     img.load("2.jpg");
     img.resize(img.getWidth()/2, img.getHeight()/2);
     
-    p = new Pieces (0,0,img);
+    p = new Pieces(0,0,img);
+
 }
 
 //--------------------------------------------------------------
@@ -44,16 +46,22 @@ void ofApp::update(){
         ofLog() << " got  " << reciver;
         
         if (m.getAddress() == "/push") {
+        
+
             p  = new Pieces(ofRandom(0,img.getWidth()), ofRandom(-0,ofGetWidth()),img);
         }
     }
-    p->update();
+    
+    
+//    p->update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     //img.draw(0, 0);
+    
     p->draw();
+
 }
 
 //--------------------------------------------------------------

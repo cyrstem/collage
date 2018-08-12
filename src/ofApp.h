@@ -27,6 +27,8 @@ class ofApp : public ofBaseApp{
         ofxOscReceiver reciver;
     ofImage img;
     Pieces *p;
+    float timeInit;
+
 
     
 };
