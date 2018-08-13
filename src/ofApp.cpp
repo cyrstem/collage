@@ -3,6 +3,7 @@ Pieces::Pieces()
 {
     pos.x = 0;
     pos.y = 0;
+    age =0;
     
 }
 Pieces::Pieces(float x, float y,ofImage &cpy)
@@ -15,7 +16,7 @@ Pieces::Pieces(float x, float y,ofImage &cpy)
 }
 void Pieces::update()
 {
-    
+    age++;
 }
 void Pieces::draw()
 {
@@ -34,7 +35,14 @@ void ofApp::setup(){
     img.load("2.jpg");
     img.resize(img.getWidth()/2, img.getHeight()/2);
     
-    p = new Pieces(0,0,img);
+    //p = new Pieces(0,0,img);
+    int numPieces =10;
+//    for (int i =0; i<numPieces; i++) {
+//            //apuntar a image no copiar imagen
+//        auto m =PiecesRef(new Pieces(ofRandom(0,400),ofRandom(0,400),img));
+//        p.push_back(m);
+//    }
+
 
 }
 
@@ -46,28 +54,40 @@ void ofApp::update(){
         ofLog() << " got  " << reciver;
         
         if (m.getAddress() == "/push") {
-        
+            for (int i =0; i<numPieces; i++) {
+                //apuntar a image no copiar imagen
+                auto m =PiecesRef(new Pieces(ofRandom(0,img.getWidth()),ofRandom(0,img.getHeight()),img));
+                p.push_back(m);
+            }
 
-            p  = new Pieces(ofRandom(0,img.getWidth()), ofRandom(-0,ofGetWidth()),img);
         }
     }
     
     
-//    p->update();
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    //img.draw(0, 0);
+
+    for (auto movp :p){
+        movp->draw();
+    }
     
-    p->draw();
+
 
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if (key == OF_KEY_LEFT) {
-        p  = new Pieces(ofRandom(0,img.getWidth()), ofRandom(-0,ofGetWidth()),img);
+        int numPieces =10;
+        for (int i =0; i<numPieces; i++) {
+            //apuntar a image no copiar imagen
+            auto m =PiecesRef(new Pieces(ofRandom(0,img.getWidth()),ofRandom(0,img.getHeight()),img));
+            p.push_back(m);
+        }
+
     }
 
 }

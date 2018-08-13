@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxOsc.h"
 #define PORT 12345
+typedef std::shared_ptr<class Pieces>PiecesRef;
 class Pieces {
 public:
     Pieces();
@@ -12,8 +13,7 @@ public:
     void draw();
     ofPoint pos;
     ofImage reference;
-    
-private:
+    int age;
 };
 
 //--------------------------------------------------------------
@@ -26,8 +26,9 @@ class ofApp : public ofBaseApp{
 		void keyPressed(int key);
         ofxOscReceiver reciver;
     ofImage img;
-    Pieces *p;
-    float timeInit;
+
+    float numPieces;
+    vector<PiecesRef>p;
 
 
     
