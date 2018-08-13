@@ -45,7 +45,7 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     reciver.setup(PORT);
     ofLog() << "listening for osc messages on port " << PORT;
-    img.load("2.jpg");
+    img.load("1.jpg");
     img.resize(img.getWidth()/2, img.getHeight()/2);
     time =ofGetElapsedTimeMillis();
     //p = new Pieces(0,0,img);
