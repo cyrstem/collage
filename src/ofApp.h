@@ -8,12 +8,14 @@ class Pieces {
 public:
     Pieces();
     Pieces(float x, float y, ofImage &cpy);
-
+    ~Pieces();
     void update();
     void draw();
     ofPoint pos;
     ofImage reference;
-    int age;
+     float age;
+   float lifetime;
+    bool isAlive;
 };
 
 //--------------------------------------------------------------
@@ -31,5 +33,6 @@ class ofApp : public ofBaseApp{
     vector<PiecesRef>p;
 
 
+    float time;
     
 };
