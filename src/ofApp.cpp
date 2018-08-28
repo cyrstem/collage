@@ -1,3 +1,6 @@
+
+using namespace ofxCv;
+using namespace cv;
 #include "ofApp.h"
 Pieces::Pieces()
 {
@@ -55,6 +58,16 @@ void ofApp::setup(){
 //        auto m =PiecesRef(new Pieces(ofRandom(0,400),ofRandom(0,400),img));
 //        p.push_back(m);
 //    }
+    
+    //Cv user
+    cam.setup(720, 480);
+    cFinder.setMinAreaRadius(1);
+    cFinder.setMaxAreaRadius(300);
+    cFinder.setThreshold(150);
+    //espera medio segundo y olvidalo
+    cFinder.getTracker().setPersistence(15);
+     //un objeto se pudde mover 32 pxls por frame
+    cFinder.getTracker().setMaximumDistance(32);
 
 
 }
@@ -93,6 +106,15 @@ void ofApp::update(){
 //        it = p.erase(it);
 //        }
 //    }
+    
+    
+     //open Cv
+    cam.update();
+    if (cam.isFrameNew()) {
+        blur(cam, 10);
+        cFinder.findContours(cam);
+        
+    }
 
 }
 
