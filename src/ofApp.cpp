@@ -27,7 +27,7 @@ void Pieces::update()
     if(age <lifetime){
         isAlive =false;
         
-//    cout<<"are particles alive"<< isAlive<<endl;
+    cout<<"are particles alive"<< isAlive<<endl;
         
     }
 }
