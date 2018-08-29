@@ -69,7 +69,7 @@ void ofApp::setup(){
      //un objeto se pudde mover 32 pxls por frame
     cFinder.getTracker().setMaximumDistance(32);
 
-
+  showLabels = true;
 }
 
 //--------------------------------------------------------------
@@ -125,6 +125,27 @@ void ofApp::draw(){
         movp->draw();
        
     }
+    
+    ofSetBackgroundAuto(showLabels);
+    RectTracker& tracker = cFinder.getTracker();
+    
+        ofSetColor(255);
+        //cam.draw(0, 0);
+        //cFinder.draw();
+        for(int i = 0; i < cFinder.size(); i++) {
+            ofPoint center = toOf(cFinder.getCenter(i));
+            ofPushMatrix();
+            ofTranslate(center.x, center.y);
+            int label = cFinder.getLabel(i);
+            string msg = ofToString(label) + ":" + ofToString(tracker.getAge(label));
+            ofDrawBitmapString(msg, 0, 0);
+            ofVec2f velocity = toOf(cFinder.getVelocity(i));
+            ofScale(5, 5);
+            ofDrawRectangle(0, 0, 10+velocity.x, 10+velocity.y);
+            
+            //ofDrawLine(0, 0, velocity.x, velocity.y);
+            ofPopMatrix();
+        }
     
 
 
