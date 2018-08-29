@@ -40,4 +40,6 @@ class ofApp : public ofBaseApp{
     //Open Cv stuff
     ofVideoGrabber cam;
     ofxCv::ContourFinder coFinder;
+	
+	  bool isAlive;
 };
