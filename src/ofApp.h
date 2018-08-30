@@ -39,7 +39,8 @@ class ofApp : public ofBaseApp{
     float time;
     //Open Cv stuff
     ofVideoGrabber cam;
-    ofxCv::ContourFinder coFinder;
-	
+    ofxCv::ContourFinder cFinder;
+    bool showLabels;
+    //glm::vec2
 	  bool isAlive;
 };

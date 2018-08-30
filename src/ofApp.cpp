@@ -1,7 +1,8 @@
 
+
+#include "ofApp.h"
 using namespace ofxCv;
 using namespace cv;
-#include "ofApp.h"
 Pieces::Pieces()
 {
     pos.x = 0;
@@ -51,13 +52,8 @@ void ofApp::setup(){
     img.load("1.jpg");
     img.resize(img.getWidth()/2, img.getHeight()/2);
     time =ofGetElapsedTimeMillis();
-    //p = new Pieces(0,0,img);
     int numPieces =10;
-//    for (int i =0; i<numPieces; i++) {
-//            //apuntar a image no copiar imagen
-//        auto m =PiecesRef(new Pieces(ofRandom(0,400),ofRandom(0,400),img));
-//        p.push_back(m);
-//    }
+
     
     //Cv user
     cam.setup(720, 480);
@@ -74,22 +70,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    while (reciver.hasWaitingMessages()) {
-        ofxOscMessage m;
-        reciver.getNextMessage(m);
-        ofLog() << " got  " << reciver;
-        
-        if (m.getAddress() == "/push") {
-            int numPieces =10;
-            for (int i =0; i<numPieces; i++) {
-                //apuntar a image no copiar imagen
-                auto m =PiecesRef(new Pieces(ofRandom(0,img.getWidth()),ofRandom(0,img.getHeight()),img));
-                p.push_back(m);
-            }
-
-        }
-    }
-    for (auto movp :p){
+for (auto movp :p){
         movp->update();
         if(movp->age==100){
             cout<<p.size()<<endl;
@@ -100,14 +81,7 @@ void ofApp::update(){
         }
 
     }
-//    for ( it -> p.begin(); it != p.end(); ){
-//            if( (*it)->lifetime==true)
-//                delete * it;
-//        it = p.erase(it);
-//        }
-//    }
-    
-    
+
      //open Cv
     cam.update();
     if (cam.isFrameNew()) {
@@ -121,10 +95,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-    for (auto movp :p){
-        movp->draw();
-       
-    }
+   
     
     ofSetBackgroundAuto(showLabels);
     RectTracker& tracker = cFinder.getTracker();
@@ -138,10 +109,23 @@ void ofApp::draw(){
             ofTranslate(center.x, center.y);
             int label = cFinder.getLabel(i);
             string msg = ofToString(label) + ":" + ofToString(tracker.getAge(label));
-            ofDrawBitmapString(msg, 0, 0);
+ 
             ofVec2f velocity = toOf(cFinder.getVelocity(i));
-            ofScale(5, 5);
-            ofDrawRectangle(0, 0, 10+velocity.x, 10+velocity.y);
+
+            
+            
+            auto m =PiecesRef(new Pieces(velocity.x,velocity.y,img));
+            p.push_back(m);
+
+            
+            for (auto movp :p){
+                movp->draw();
+                
+            }
+            
+            
+            
+            //ofDrawRectangle(0, 0, 10+velocity.x, 10+velocity.y);
             
             //ofDrawLine(0, 0, velocity.x, velocity.y);
             ofPopMatrix();
@@ -157,9 +141,7 @@ void ofApp::keyPressed(int key){
         int numPieces =10;
         for (int i =0; i<numPieces; i++) {
             //apuntar a image no copiar imagen
-            auto m =PiecesRef(new Pieces(ofRandom(0,img.getWidth()),ofRandom(0,img.getHeight()),img));
-            p.push_back(m);
-        }
+                   }
 
     }
 
