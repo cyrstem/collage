@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxOsc.h"
-#include "ofxCv.h"
+
 #define PORT 12345
 
 typedef std::shared_ptr<class Pieces>PiecesRef;
@@ -37,7 +37,4 @@ class ofApp : public ofBaseApp{
 
 
     float time;
-    //Open Cv stuff
-    ofVideoGrabber cam;
-    ofxCv::ContourFinder coFinder;
 };

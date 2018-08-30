@@ -13,8 +13,6 @@ Pieces::Pieces(float x, float y,ofImage &cpy)
     pos.x = x;
     pos.y = y;
     isAlive =true;
-    
-    
 }
 
 Pieces::~Pieces(){
@@ -48,13 +46,8 @@ void ofApp::setup(){
     img.load("1.jpg");
     img.resize(img.getWidth()/2, img.getHeight()/2);
     time =ofGetElapsedTimeMillis();
-    //p = new Pieces(0,0,img);
     int numPieces =10;
-//    for (int i =0; i<numPieces; i++) {
-//            //apuntar a image no copiar imagen
-//        auto m =PiecesRef(new Pieces(ofRandom(0,400),ofRandom(0,400),img));
-//        p.push_back(m);
-//    }
+
 
 
 }
@@ -82,17 +75,10 @@ void ofApp::update(){
             cout<<p.size()<<endl;
             movp.reset();
             p.clear();
-            //            movp.reset();
-            //            ofBackground(55);
         }
 
     }
-//    for ( it -> p.begin(); it != p.end(); ){
-//            if( (*it)->lifetime==true)
-//                delete * it;
-//        it = p.erase(it);
-//        }
-//    }
+
 
 }
 
