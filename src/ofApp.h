@@ -30,10 +30,11 @@ class ofApp : public ofBaseApp{
 		void draw();
 		void keyPressed(int key);
         ofxOscReceiver reciver;
-    ofImage img;
+    ofImage img, img2;
 
     float numPieces;
     vector<PiecesRef>p;
+    vector<PiecesRef>p2;
 
 
     float time;
