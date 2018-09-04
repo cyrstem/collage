@@ -102,7 +102,7 @@ void ofApp::draw(){
     
         ofSetColor(255);
         //cam.draw(0, 0);
-        //cFinder.draw();
+        cFinder.draw();
         for(int i = 0; i < cFinder.size(); i++) {
             ofPoint center = toOf(cFinder.getCenter(i));
             ofPushMatrix();
